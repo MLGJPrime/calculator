@@ -1,0 +1,100 @@
+:root {
+    --button-padding: 20px;
+    --button-font-size: 24px;
+    --button-border-radius: 5px;
+    --gap: 10px;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+/* Calculator container */
+.calculator {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+    width: 330px;
+    padding: 20px;
+    background-color: #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Display */
+.display {
+    grid-column: 1 / span 4;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 24px;
+    text-align: right;
+}
+
+/* Variables */
+.variables {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap);
+}
+
+.row {
+    display: flex;
+    gap: var(--gap);
+    justify-content: space-between;
+}
+
+/* Button styles */
+button {
+    background-color: #d0d0d0;
+    width: 75px;
+    height: 100px;
+    border: none;
+    border-radius: var(--button-border-radius);
+    padding: var(--button-padding);
+    font-size: var(--button-font-size);
+    cursor: pointer;
+}
+
+/* Operator buttons */
+.operator {
+    background-color: #f5f5f5;
+}
+
+/* Equals button */
+.equals {
+    background-color: #ff9800;
+    color: #fff;
+}
+
+/* Clear button */
+.clear {
+    background-color: #f44336;
+    color: #fff;
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly increase the size of the button on hover */
+}
+
+.operator:hover {
+    background-color: #e5e5e5; /* A bit darker shade on hover */
+}
+
+.equals:hover {
+    background-color: #e59400; /* A bit darker shade on hover */
+}
+
+.clear:hover {
+    background-color: #e43c26; /* A bit darker shade on hover */
+}
+
+.digit:hover {
+    background-color: #c0c0c0; /* A bit darker shade on hover */
+}
