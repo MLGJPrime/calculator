@@ -12,7 +12,7 @@ function multiply(a, b) {
 
 function divide(a, b) {
   if (b === 0) {
-    throw new Error("Error: Division by zero");
+    return "Nice try, but you can't divide by zero!";
   }
   return a / b;
 }
@@ -55,7 +55,15 @@ function calculate() {
   let operatorIndex = expression.search(/[\+\-\*\/]/);
   firstNumber = parseFloat(expression.slice(0, operatorIndex));
   secondNumber = parseFloat(expression.slice(operatorIndex + 1));
-  display.textContent = operate(firstNumber, secondNumber, operator);
+  let result = operate(firstNumber, secondNumber, operator);
+  
+  if (typeof result === 'string') {
+    display.textContent = result;
+  } else if (isNaN(result)) {
+    display.textContent = "Error: Invalid operation";
+  } else {
+    display.textContent = result;
+  }
 }
 
 // Function to clear the display
