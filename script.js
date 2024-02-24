@@ -1,78 +1,70 @@
-function add(a, b) {
-  return a + b;
-}
+// Basic arithmetic functions
+const operations = {
+  '+': (a, b) => a + b,
+  '-': (a, b) => a - b,
+  '*': (a, b) => a * b,
+  '/': (a, b) => b === 0 ? "Nice try, but you can't divide by zero!" : a / b,
+};
 
-function subtract(a, b) {
-  return a - b;
-}
+// Get the num and oper elements
+const num = document.querySelector('.num');
+const oper = document.querySelector('.oper');
 
-function multiply(a, b) {
-  return a * b;
-}
+let expression = '';
+let opSwitch = false;
 
-function divide(a, b) {
-  if (b === 0) {
-    return "Nice try, but you can't divide by zero!";
-  }
-  return a / b;
-}
-
-function operate(a, b, operator) {
-  switch (operator) {
-    case "+":
-      return add(a, b);
-    case "-":
-      return subtract(a, b);
-    case "*":
-      return multiply(a, b);
-    case "/":
-      return divide(a, b);
-    default:
-      throw new Error(`Invalid operator: ${operator}`);
-  }
-}
-
-let firstNumber;
-let secondNumber;
-let operator;
-
-// Get the display element
-const display = document.querySelector('.display');
-
-// Function to add a digit to the display
+// Function to add a digit to the num
 function addDigit(digit) {
-  display.textContent += digit;
+  if (opSwitch) {
+    num.textContent = '';
+    opSwitch = false;
+  }
+  num.textContent += digit;
+  expression += digit.toString();
 }
 
-// Function to add an operator to the display
+// Function to add an operator to the num
 function addOperator(op) {
-  display.textContent += op;
-  operator = op;
+  if (checkOperator()) {
+    calculate();
+    expression = num.textContent;
+  }
+  expression += op;
+  oper.textContent = op;
+  opSwitch = true;
 }
 
 function calculate() {
-  let expression = display.textContent;
-  let operatorIndex = expression.search(/[\+\-\*\/]/);
-  firstNumber = parseFloat(expression.slice(0, operatorIndex));
-  secondNumber = parseFloat(expression.slice(operatorIndex + 1));
-  let result = operate(firstNumber, secondNumber, operator);
-  
-  if (typeof result === 'string') {
-    display.textContent = result;
-  } else if (isNaN(result)) {
-    display.textContent = "Error: Invalid operation";
-  } else {
-    display.textContent = result;
-  }
+  const [firstNumber, operator, secondNumber] = expression.match(/(\d+)([\+\-\*\/])(\d+)/).slice(1);
+  const result = operations[operator](parseFloat(firstNumber), parseFloat(secondNumber));
+  num.textContent = result;
 }
 
-// Function to clear the display
-function clearDisplay() {
-  display.textContent = '';
+// Function to clear the num
+function clearNum() {
+  num.textContent = '';
+  oper.textContent = '';
+  expression = '';
+}
+
+function checkOperator() {
+  return (['+', '-', '*', '/'].includes(oper.textContent));
 }
 
 const darkModeToggle = document.getElementById('darkModeToggle');
 
 darkModeToggle.addEventListener('change', () => {
   document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+});
+
+window.addEventListener('keydown', (event) => {
+  if (event.key >= '0' && event.key <= '9') {
+    addDigit(event.key);
+  } else if (['+', '-', '*', '/'].includes(event.key)) {
+    addOperator(event.key);
+  } else if (event.key === 'Enter') {
+    calculate();
+  } else if (event.key === 'Backspace') {
+    clearNum();
+  }
 });

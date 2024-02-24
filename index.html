@@ -13,7 +13,10 @@
         <input type="checkbox" id="darkModeToggle">
     </div>
     <div class="calculator">
-        <div id="display" class="display"></div>
+        <div class="display">
+            <span class="oper"></span>
+            <span class="num"></span>
+          </div>
         <div id="variables" class="variables">
             <div class="row">
                 <button id="btn1" class="digit" onclick="addDigit(1)">1</button>
@@ -37,7 +40,7 @@
                 <button id="btn0" class="digit" onclick="addDigit(0)">0</button>
                 <button id="divide" class="operator" onclick="addOperator('/')">/</button>
                 <button id="equals" class="equals" onclick="calculate()">=</button>
-                <button id="clear" class="clear" onclick="clearDisplay()">C</button>
+                <button id="clear" class="clear" onclick="clearNum()">C</button>
             </div>
         </div>
     </div>

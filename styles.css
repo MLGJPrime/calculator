@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 :root {
     --button-padding: 20px;
     --button-font-size: 24px;
@@ -6,6 +8,7 @@
 }
 
 body {
+    font-family: 'Roboto', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -35,6 +38,15 @@ body {
     padding: 10px;
     font-size: 24px;
     text-align: right;
+}
+
+.oper {
+    color: rgb(184, 184, 184);
+    float: left;
+}
+
+.num {
+    float: right;
 }
 
 /* Variables */
@@ -153,7 +165,7 @@ body.dark-mode .clear:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 160px;
+    width: 180px;
     padding: 10px;
     background-color: #f5f5f5;
     border-radius: 30px;
